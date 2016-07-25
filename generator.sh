@@ -26,25 +26,26 @@ sudo s3cmd --configure
 echo "S3_BUCKET=convenia-backups \\" >> /var/www/backup/backup.sh
 echo "Mysql Host? "
 read input_variable
-echo "MYSQL_HOST=: $input_variable \\" >> /var/www/backup/backup.sh
+echo "MYSQL_HOST=$input_variable \\" >> /var/www/backup/backup.sh
 echo "MySQL User? "
 read input_variable
-echo "MYSQL_USER=: $input_variable \\" >> /var/www/backup/backup.sh
+echo "MYSQL_USER=$input_variable \\" >> /var/www/backup/backup.sh
+echo "MYSQL_PORT=3306 \\" >> /var/www/backup/backup.sh
 echo "MySQL Pass? "
 read input_variable
-echo "MYSQL_PASS=: $input_variable \\" >> /var/www/backup/backup.sh
+echo "MYSQL_PASS=$input_variable \\" >> /var/www/backup/backup.sh
 echo "MySQL DB? "
 read input_variable
-echo "MYSQL_DB=: $input_variable \\" >> /var/www/backup/backup.sh
+echo "MYSQL_DB=$input_variable \\" >> /var/www/backup/backup.sh
 echo "/var/www/backup/routine.sh" >> /var/www/backup/backup.sh
 
 chmod +x /var/www/backup/backup.sh
 cp $DIR/routine.sh /var/www/backup/routine.sh
 chmod +x /var/www/backup/routine.sh
 
-crontab -l > backup.cron
 echo "whats time cron needs run [0-24] ? "
 read input_variable
+crontab -e > backup.cron
 echo "0 $input_variable * * * /var/www/backup/backup.sh >/dev/null 2>&1" >> backup.cron
 
 if [ ! -f "$HOME/.bashrc" ]; then
@@ -52,7 +53,7 @@ if [ ! -f "$HOME/.bashrc" ]; then
 fi
 echo "Slack token ? "
 read input_variable
-echo "SLACK_TOKEN=$input_variable" >>  $HOME/.bashrc
-
+echo "export SLACK_TOKEN=$input_variable" >>  $HOME/.bashrc
+source ~/.bashrc
 crontab mycron
-echo "Perfect, instaled!"
+echo "Perfect, instaled! plese feedback victor.ventura@convenia.com.br"
