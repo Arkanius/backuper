@@ -17,7 +17,9 @@ touch /var/www/backup/backup.sh
 echo "#!/bin/bash" >> /var/www/backup/backup.sh
 
 echo "instaling dependencies..."
+sudo apt-get update
 sudo apt-get install s3cmd
+sudo apt-get install awscli -y
 sudo npm install -g slack-cli
 echo "dependencies OK, lets configre enviroment"
 

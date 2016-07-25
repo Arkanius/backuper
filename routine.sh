@@ -1,5 +1,13 @@
 #!/bin/bash
-slackcli -h general -m "Starting Backup"
+instance_id=$(ec2metadata --instance-id)
+cronAble= aws ec2 describe-tags --filters "Name=resource-id,Values=$instance_id" --region=us-west-2  "Name=key,Values=CronAble" --output=text | cut -f5
+
+if [ "$cronAble" == "CronAble" ]; then
+    echo "Instance not permited"
+    exit
+fi
+
+slackcli -h general -m "Starting Backup..."
 cd /tmp
 file=$(date +%Y%m%d%H%M%S).sql
 mysqldump \
@@ -18,4 +26,3 @@ else
   echo "Error backing up mysql"
   exit 255
 fi
-
