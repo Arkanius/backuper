@@ -20,10 +20,7 @@ echo "instaling dependencies..."
 sudo apt-get update
 sudo apt-get install s3cmd
 sudo apt-get install awscli -y
-sudo npm install -g slack-cli
-echo "dependencies OK, lets configre enviroment"
-
-sudo s3cmd --configure
+sudo npm install -g slack-clivou melhorar isso, fazer coisas condicionais, separas os scripts
 
 echo "S3_BUCKET=convenia-backups \\" >> /var/www/backup/backup.sh
 echo "Mysql Host? "
@@ -48,7 +45,8 @@ chmod +x /var/www/backup/routine.sh
 echo "whats time cron needs run [0-24] ? "
 read input_variable
 crontab -e > backup.cron
-echo "0 $input_variable * * * /var/www/backup/backup.sh >/dev/null 2>&1" >> backup.cron
+echo "5 $input_variable * * * /var/www/backup/backup.sh >/dev/null 2>&1" >> backup.cron
+sudo service cron restart
 
 if [ ! -f "$HOME/.bashrc" ]; then
     touch $HOME/.bashrc
