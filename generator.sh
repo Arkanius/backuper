@@ -20,7 +20,7 @@ echo "instaling dependencies..."
 sudo apt-get update
 sudo apt-get install s3cmd
 sudo apt-get install awscli -y
-sudo npm install -g slack-clivou melhorar isso, fazer coisas condicionais, separas os scripts
+sudo npm install -g slack-cli //vou melhorar isso, fazer coisas condicionais, separas os scripts
 
 echo "S3_BUCKET=convenia-backups \\" >> /var/www/backup/backup.sh
 echo "Mysql Host? "
