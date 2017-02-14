@@ -20,6 +20,9 @@ echo "instaling dependencies..."
 sudo apt-get update
 sudo apt-get install s3cmd
 sudo apt-get install awscli -y
+sudo apt-get install nodejs
+sudo apt-get install npm
+sudo ln -s /usr/bin/nodejs /usr/bin/node
 sudo npm install -g slack-cli //vou melhorar isso, fazer coisas condicionais, separas os scripts
 
 echo "S3_BUCKET=convenia-backups \\" >> /var/www/backup/backup.sh
