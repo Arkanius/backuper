@@ -25,7 +25,7 @@ sudo apt-get install npm
 sudo ln -s /usr/bin/nodejs /usr/bin/node
 sudo npm install -g slack-cli //vou melhorar isso, fazer coisas condicionais, separas os scripts
 
-echo "S3_BUCKET=convenia-backups \\" >> /var/www/backup/backup.sh
+echo "S3_BUCKET=your-bucket \\" >> /var/www/backup/backup.sh
 echo "Mysql Host? "
 read input_variable
 echo "MYSQL_HOST=$input_variable \\" >> /var/www/backup/backup.sh
@@ -59,4 +59,4 @@ read input_variable
 echo "export SLACK_TOKEN=$input_variable" >>  $HOME/.bashrc
 source ~/.bashrc
 crontab mycron
-echo "Perfect, instaled! plese feedback victor.ventura@convenia.com.br"
+echo "Finished!"
